@@ -1,4 +1,8 @@
-package migration
+package passman
+
+import (
+	"time"
+)
 
 type PassMan struct {
 	ID int gorm "primaryKey"
@@ -8,12 +12,3 @@ type PassMan struct {
 	CreatedAt time.time 
 	UpdatedAt time.time
 }
-
-type User struct {
-	ID int gorm "primaryKey"
-	FullName string
-	Address string
-	Email string
-	Password string
-}
-
