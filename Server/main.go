@@ -1,8 +1,12 @@
 package main
 
-func main() {
-	r.gin.Default()
+import (
+	"github.com/gin-gonic/gin"
+)
 
-	r.Get("/users", UserGetAll)
-	r.run()
+func main() {
+	r := gin.Default()
+	route.userRoute
+
+	r.Run()
 }
