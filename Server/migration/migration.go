@@ -14,7 +14,8 @@ type PassMan struct {
 }
 
 type User struct {
-	UserID   int `gorm: "primaryKey"`
+	ID       int `gorm: "primaryKey"`
+	UserID   int
 	FullName string
 	Address  string
 	Email    string
