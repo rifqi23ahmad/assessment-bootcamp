@@ -1,4 +1,4 @@
-package passman
+package entity
 
 import "time"
 
