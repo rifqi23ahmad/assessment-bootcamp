@@ -11,9 +11,10 @@ import (
 var (
 	DB          *gorm.DB = config.Connection()
 	authService          = auth.NewService()
-	// userService          = user.NewRepository(DB)
+	// userService          = user.Service
 )
 
 func userRoute(r *gin.Engine) {
 	r.POST("user/register")
+
 }

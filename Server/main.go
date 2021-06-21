@@ -6,7 +6,6 @@ import (
 
 func main() {
 	r := gin.Default()
-	route.userRoute
-
+	route.userRoute(r)
 	r.Run()
 }
