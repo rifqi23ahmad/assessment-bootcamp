@@ -16,4 +16,14 @@
 - Wajib melakukan commit ketika ada pemberitahuan untuk melakukan commit
 - Waktu pengerjaan adalah selama 4,5 jam dimulai dari saat ditentukan start mengerjakan assessment
 
+
+**fitur-fitur**
+- login user
+- register user
+- create password
+- read all password
+- update password
+- delete password
+- fitur logout
+
 **Selamat mengerjakan**
