@@ -26,4 +26,7 @@
 - delete password
 - fitur logout
 
+**perbaikan nilai**
+- deadline hari kamis 24-06-2021 jam 09.00 WIB
+
 **Selamat mengerjakan**
