@@ -1,32 +1,64 @@
 package user
 
 import (
+	"assessment-bootcamp/Server/entity"
+
 	"gorm.io/gorm"
-	"assessment-bootcamp/entity"
 )
 
-type Repository interface {
-	UserGetAll() ([]entity.User, error)
-	UserCreated(userCreate entity.user User) (entity.User, error)
-	UserbyID(UserbyID string) (User, error)
-	UserFindEmail(email string) (User, error)
-	UserDelete(user User) (User, error)
+type UserRepository interface {
+	CreateUser(user entity.User) (entity.User, error)
+	FindByEmail(email string) (entity.User, error)
+	UpdateUser(id string, dataUpdate map[string]interface{}) (entity.User, error)
+	GetOneUser(id string) (entity.User, error)
 }
 
-type repository struct {
+type Repository struct {
 	db *gorm.DB
 }
 
-func NewRepository(db *gorm.DB) *repository {
-	return &repository{db}
+func NewRepository(db *gorm.DB) *Repository {
+	return &Repository{db}
 }
 
-func (r *repository) UserGetiAll() ([]User, error) {
-	var users []entity.User
-	err := r.db.Find(&users).error
-	if err != nil {
-		return users
+func (r *Repository) CreateUser(user entity.User) (entity.User, error) {
+	if err := r.db.Create(&user).Error; err != nil {
+		return user, err
 	}
-	return users, nil
 
+	return user, nil
+}
+
+func (r *Repository) FindByEmail(email string) (entity.User, error) {
+	var user entity.User
+
+	if err := r.db.Where("email = ?", email).Find(&user).Error; err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
+func (r *Repository) GetOneUser(id string) (entity.User, error) {
+	var user entity.User
+
+	if err := r.db.Where("id = ?", id).Preload("PasswordList").Find(&user).Error; err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
+func (r *Repository) UpdateUser(id string, dataUpdate map[string]interface{}) (entity.User, error) {
+	var user entity.User
+
+	if err := r.db.Model(&user).Where("id = ?", id).Updates(dataUpdate).Error; err != nil {
+		return user, err
+	}
+
+	if err := r.db.Where("id = ?", id).Find(&user).Error; err != nil {
+		return user, err
+	}
+
+	return user, nil
 }

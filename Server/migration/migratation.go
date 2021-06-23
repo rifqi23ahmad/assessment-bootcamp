@@ -8,7 +8,7 @@ type User struct {
 	Address   string
 	Email     string
 	Password  string
-	PassMan   []PassMan
+	PassMan   []PassMan `gorm:"foreignKey"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

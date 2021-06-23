@@ -1,7 +1,7 @@
 package config
 
 import (
-	"assessment-bootcamp/migration"
+	"assessment-bootcamp/Server/entity"
 	"fmt"
 	"os"
 
@@ -26,8 +26,8 @@ func Connect() *gorm.DB {
 		panic(err.Error())
 	}
 
-	db.AutoMigrate(&migration.User{})
-	db.AutoMigrate(&migration.PassMan{})
+	db.AutoMigrate(&entity.User{})
+	db.AutoMigrate(&entity.PassMan{})
 
 	return db
 }
