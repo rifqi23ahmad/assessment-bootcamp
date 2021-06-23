@@ -10,16 +10,15 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connection() *gorm.DB {
+func Connect() *gorm.DB {
 	err := godotenv.Load()
 
-	dbUser := os.Getenv("DB_USER")
-	dbPass := os.Getenv("DB_PASS")
+	dbUser := os.Getenv("DB_USERNAME")
+	dbPass := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
 	dbName := os.Getenv("DB_NAME")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbUser, dbPass, dbHost, dbName)
-	// dsn := "root:@tcp(localhost)?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbUser, dbPass, dbHost, dbName)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
@@ -28,7 +27,7 @@ func Connection() *gorm.DB {
 	}
 
 	db.AutoMigrate(&migration.User{})
+	db.AutoMigrate(&migration.PassMan{})
 
 	return db
-
 }
