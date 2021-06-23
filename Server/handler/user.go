@@ -20,16 +20,16 @@ func NewUserHandler(userService user.UserService, authService auth.Service) *use
 }
 
 func (h *userHandler) CreateUserHandler(c *gin.Context) {
-	var inputUser entity.UserInput
+	var createUser entity.UserInput
 
-	if err := c.ShouldBindJSON(&inputUser); err != nil {
+	if err := c.ShouldBindJSON(&createUser); err != nil {
 		c.JSON(400, gin.H{
 			"error": "input data required",
 		})
 		return
 	}
 
-	response, err := h.userService.SaveNewUser(inputUser)
+	response, err := h.userService.SaveNewUser(createUser)
 	if err != nil {
 		c.JSON(500, gin.H{
 			"error": err.Error(),
@@ -41,7 +41,7 @@ func (h *userHandler) CreateUserHandler(c *gin.Context) {
 }
 
 func (h *userHandler) LoginUserHandler(c *gin.Context) {
-	var inputLoginUser entity.UserInput
+	var inputLoginUser entity.PassManUserInput
 
 	if err := c.ShouldBindJSON(&inputLoginUser); err != nil {
 		c.JSON(400, gin.H{
