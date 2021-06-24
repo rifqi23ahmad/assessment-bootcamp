@@ -16,4 +16,17 @@
 - Wajib melakukan commit ketika ada pemberitahuan untuk melakukan commit
 - Waktu pengerjaan adalah selama 4,5 jam dimulai dari saat ditentukan start mengerjakan assessment
 
+
+**fitur-fitur**
+- login user
+- register user
+- create password
+- read all password
+- update password
+- delete password
+- fitur logout
+
+**perbaikan nilai**
+- deadline hari kamis 24-06-2021 jam 09.00 WIB
+
 **Selamat mengerjakan**
