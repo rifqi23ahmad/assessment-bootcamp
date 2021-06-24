@@ -1,35 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+// import './index.css';
+import App from './App';
+// import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
+// import "bootstrap/dist/css/bootstrap.min.css";
 
-import reducers from './reducers';
-import App from './components/App';
-import home from './components/home';
-import Signup from './components/auth/Signup';
-import Signout from './components/auth/Signout';
-import Signin from './components/auth/Signin';
-
-const store = createStore(
-  reducers,
-  {
-    auth: { authenticated: localStorage.getItem('token') }
-  },
-  applyMiddleware(reduxThunk)
-);
+import store from './redux/store'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App>
-        <Route path="/" exact component={home} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/signout" component={Signout} />
-        <Route path="/signin" component={Signin} />
-      </App>
-    </BrowserRouter>
-  </Provider>,
-  document.querySelector('#root')
+  <React.StrictMode>
+    <Provider store={store}>
+    <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();
